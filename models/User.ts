@@ -1,3 +1,5 @@
+'use server';
+
 import mongoose, {Schema, model, models} from "mongoose";
 import bcrypt from "bcryptjs";
 
@@ -22,10 +24,11 @@ const userSchema = new Schema<IUser>(
 
 );
 
-userSchema.pre("save", async function () {
+userSchema.pre("save", async function (next: any) {
     if (this.isModified("password")) {
       this.password = await bcrypt.hash(this.password, 10); 
     }
+    next();
 });
 
 const  User = models?.User || model<IUser>("User", userSchema)
