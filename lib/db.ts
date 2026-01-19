@@ -1,3 +1,4 @@
+/// <reference path="../types.d.ts" />
 import mongoose from "mongoose";
 
 const   MONGODB_URL = process.env.MONGODB_URL!
@@ -8,7 +9,7 @@ if(!MONGODB_URL){
 
 }
 
-let cached = global.mongoose
+let cached = global.mongoose;
 
 if(!cached){
     cached = global.mongoose = {conn: null, promise: null}
@@ -25,7 +26,7 @@ export async function  connectToDatabase() {
             maxPoolSize: 10
         }
 
-        mongoose
+         mongoose
         .connect(MONGODB_URL, opts)
         .then(() => mongoose.connection)
     }
