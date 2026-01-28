@@ -1,4 +1,5 @@
 import Image from "next/image";
+// it is import
 
 export default function Home() {
   return (
